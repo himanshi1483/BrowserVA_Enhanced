@@ -85,7 +85,7 @@ function getVizData() {
     };
 
     sheet = viz.getWorkbook().getActiveSheet();
-
+  //  alert("SheetType = " + sheet.getSheetType());
     //if active tab is a worksheet, get data from that sheet
     if (sheet.getSheetType() === 'worksheet') {
         $('#menu').append('<option>' + sheet.getName() + '</option>');
@@ -98,13 +98,24 @@ function getVizData() {
         }
         //if active sheet is a dashboard get data from a specified sheet
     } else {
-        // alert("SheetType = " + sheet.getSheetType());
+      
         // debugger;
         worksheetArray = viz.getWorkbook().getActiveSheet().getWorksheets();
         for (var i = 0; i < worksheetArray.length; i++) {
             sheet = worksheetArray[i];
             if (sheet.getSheetType() === 'worksheet') {
                 $('#menu').append('<option>' + sheet.getName() + '</option>');
+            }
+        }
+
+        var ul = document.getElementById("dashboardCols");
+        var lis = ul.children;
+
+        const li_count = lis.length;
+       // alert(li_count);
+        if (li_count > 0 || li_count == 0) {
+            for (let index = 0; index < li_count; index++) {
+                ul.removeChild(lis[0]);
             }
         }
         fetchSheetData();
@@ -130,7 +141,8 @@ function fetchSheetData() {
                 var lis = ul.children;
 
                 const li_count = lis.length;
-                if (li_count > 0) {
+              //  alert(li_count);
+                if (li_count > 0 || li_count == 0) {
                     for (let index = 0; index < li_count; index++) {
                         ul.removeChild(lis[0]);
                     }

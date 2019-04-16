@@ -77,8 +77,8 @@ function selectColumn(column, ColType) {
 function filterByColumn(ColType, column) {
     var _colType = (sentenceCase(ColType));
     var _column = (sentenceCase(column));
-    //alert(_colType);
-    //alert(column);.
+  //  alert(_colType);
+  //  alert(_column);
     var colNames = [];
     colNames = localStorage.getItem("Fields");
     var str_array = colNames.split(',');
@@ -103,10 +103,10 @@ function filterByColumn(ColType, column) {
     // workbook.getActiveSheet().getWorksheets()[2].applyFilterAsync("CONTAINS("+ColType+")", "CONTAINS("+column+")", tableau.FilterUpdateType.REPLACE);
     // workbook.getActiveSheet().getWorksheets()[3].applyFilterAsync("CONTAINS("+ColType+")", "CONTAINS("+column+")", tableau.FilterUpdateType.REPLACE);
 
-    workbook.getActiveSheet().getWorksheets()[0].applyFilterAsync(_colType, column, tableau.FilterUpdateType.REPLACE);
-    workbook.getActiveSheet().getWorksheets()[1].applyFilterAsync(_colType, column, tableau.FilterUpdateType.REPLACE);
-    workbook.getActiveSheet().getWorksheets()[2].applyFilterAsync(_colType, column, tableau.FilterUpdateType.REPLACE);
-    workbook.getActiveSheet().getWorksheets()[3].applyFilterAsync(_colType, column, tableau.FilterUpdateType.REPLACE);
+    workbook.getActiveSheet().getWorksheets()[0].applyFilterAsync(_colType, _column, tableau.FilterUpdateType.REPLACE);
+    workbook.getActiveSheet().getWorksheets()[1].applyFilterAsync(_colType, _column, tableau.FilterUpdateType.REPLACE);
+    workbook.getActiveSheet().getWorksheets()[2].applyFilterAsync(_colType, _column, tableau.FilterUpdateType.REPLACE);
+    workbook.getActiveSheet().getWorksheets()[3].applyFilterAsync(_colType, _column, tableau.FilterUpdateType.REPLACE);
 }
 
 //Start Viz Over
