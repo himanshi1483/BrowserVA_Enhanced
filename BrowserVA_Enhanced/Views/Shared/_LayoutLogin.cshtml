@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Tableau Assistant</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="images/favicon.ico" type="image/ico" />
+    <!-- Bootstrap -->
+    <link href="~/ThemeFiles/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/ThemeFiles/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="~/ThemeFiles/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="~/ThemeFiles/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+
+    <!-- bootstrap-progressbar -->
+    <link href="~/ThemeFiles/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="~/ThemeFiles/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="~/ThemeFiles/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- Custom Theme Style -->
+    <link href="~/ThemeFiles/build/css/custom.min.css" rel="stylesheet">
+</head>
+<body class="login">
+    <div class="">
+        <div class="main_container">
+         
+            <div class="right_col" role="main">
+                @RenderBody()         
+            </div>
+
+            <footer>
+                <div class="pull-right">
+                    &copy; 2019 - Proximous <a href="http://proximous.com"></a>
+                </div>
+                    <div class="clearfix"></div>
+            </footer>
+            <!-- /footer content -->
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+    <!-- jQuery -->
+    <script src="~/ThemeFiles/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/ThemeFiles/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/ThemeFiles/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/ThemeFiles/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="~/ThemeFiles/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="~/ThemeFiles/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="~/ThemeFiles/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/ThemeFiles/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="~/ThemeFiles/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="~/ThemeFiles/vendors/Flot/jquery.flot.js"></script>
+    <script src="~/ThemeFiles/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="~/ThemeFiles/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="~/ThemeFiles/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="~/ThemeFiles/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="~/ThemeFiles/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="~/ThemeFiles/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="~/ThemeFiles/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="~/ThemeFiles/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="~/ThemeFiles/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="~/ThemeFiles/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="~/ThemeFiles/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="~/ThemeFiles/vendors/moment/min/moment.min.js"></script>
+    <script src="~/ThemeFiles/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- Custom Theme Scripts -->
+    <script src="~/ThemeFiles/build/js/custom.min.js"></script>
+
+</body>
+</html>

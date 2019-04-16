@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BrowserVA_Enhanced.Models.DashboardHistory>
+
+@{
+    ViewBag.Title = "History";
+}
+
+<h2>History</h2>
+
+<table class="table table-striped table-bordered">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>*@
+         <th>
+            @Html.DisplayNameFor(model => model.DashboardName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Url)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.OpenedOn)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>*@
+         <td>
+            @Html.DisplayFor(modelItem => item.DashboardName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Url)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.OpenedOn)
+        </td>
+        <td>
+            @Html.ActionLink("View", "ViewDashboard", new { id=item.Id })
+         
+        </td>
+    </tr>
+}
+
+</table>

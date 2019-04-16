@@ -29,5 +29,8 @@ namespace BrowserVA_Enhanced.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<DashboardHistory> DashboardHistory { get; set; }
+
     }
 }
