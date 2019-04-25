@@ -31,14 +31,14 @@
         <div id="tabs-1">
             <div id="vizContainer"></div>
         </div>
-        <div id="tabs-2"  style="display:none">
+        <div id="tabs-2">
             Worksheet Name :
             <select id="menu"></select>
             <div id="dataContainer">
             </div>
         </div>
     </div>
-    
+
     <div id="textarea"></div>
 </div>
 <div class="col-md-4">
@@ -49,11 +49,13 @@
     <div class="container mt-3">
         <ul class="list-inline" id="dashboardCols"></ul>
     </div>
+      <div class="container mt-3">
+        <ul class="list-inline" id="filterOptions"></ul>
+    </div>
     <br>
     <p><i>Example: Filter by Region</i></p>
     <p><i>Value Asia</i></p>
     <br>
-     
 </div>
 
 
@@ -71,6 +73,11 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
 <!-- Voice Recognition -->
 <script src="~/SpeechToText/dynamic-tableau.js"></script>
+<!-- Extensions Library  -->
+<script src="~/SpeechToText/tableau.extensions.1.latest.js"></script>
+
+<!-- Our extension's code -->
+<script src="~/SpeechToText/datasources.js"></script>
 @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"

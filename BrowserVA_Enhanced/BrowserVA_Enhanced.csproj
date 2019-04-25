@@ -242,6 +242,8 @@
     <Content Include="SpeechToText\annyang.min.js" />
     <Content Include="SpeechToText\audioinput.js" />
     <Content Include="SpeechToText\chrome.html" />
+    <Content Include="SpeechToText\datasources.html" />
+    <Content Include="SpeechToText\datasources.js" />
     <Content Include="SpeechToText\dynamic-index.css" />
     <Content Include="SpeechToText\dynamic-index.html" />
     <Content Include="SpeechToText\dynamic-index.js" />
@@ -257,6 +259,8 @@
     <Content Include="SpeechToText\speechkitt-demo.gif" />
     <Content Include="SpeechToText\styles.css" />
     <Content Include="SpeechToText\tableau-data.js" />
+    <Content Include="SpeechToText\tableau-dt.html" />
+    <Content Include="SpeechToText\tableau.extensions.1.latest.js" />
     <Content Include="ThemeFiles\build\css\custom.css" />
     <Content Include="ThemeFiles\build\css\custom.min.css" />
     <Content Include="ThemeFiles\build\images\back_disabled.png" />
