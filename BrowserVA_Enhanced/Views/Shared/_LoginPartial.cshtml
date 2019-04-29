@@ -1,7 +1,7 @@
 ﻿@using Microsoft.AspNet.Identity
 <style>
     .nav.navbar-nav>li>a {
-        color:white !important;
+        color:black !important;
     }
 </style>
 @if (Request.IsAuthenticated)
@@ -11,10 +11,11 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>
+        @*<li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        </li>*@
+        <li></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">   <i class="fa fa-power-off"></i></a></li>
     </ul>
     }
 }

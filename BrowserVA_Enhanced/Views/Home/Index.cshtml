@@ -1,63 +1,186 @@
 ﻿
 @{
     ViewData["Title"] = "Voice Enabled Dashboard";
+
 }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="~/SpeechToText/Underscore.js"></script>
 <style>
     .title_right {
         margin-left: 21%;
     }
-</style>
-<div class="title_right">
-    <div class="col-md-8 col-sm-8 col-xs-12 form-group top_search">
 
-        <div class="input-group">
-            <input id="tableauURL" type="text" class="form-control" placeholder="Enter the url for your dashboard...">
-            <span class="input-group-btn">
-                <button class="btn btn-default" id="btnSubmit" type="submit">Go!</button>
-            </span>
+    @@media only screen and (min-width: 600px) {
+        /* For tablets: */
+        .col-s-1 {
+            width: 8.33%;
+        }
+
+        .col-s-2 {
+            width: 16.66%;
+        }
+
+        .col-s-3 {
+            width: 25%;
+        }
+
+        .col-s-4 {
+            width: 33.33%;
+        }
+
+        .col-s-5 {
+            width: 41.66%;
+        }
+
+        .col-s-6 {
+            width: 50%;
+        }
+
+        .col-s-7 {
+            width: 58.33%;
+        }
+
+        .col-s-8 {
+            width: 66.66%;
+        }
+
+        .col-s-9 {
+            width: 75%;
+        }
+
+        .col-s-10 {
+            width: 83.33%;
+        }
+
+        .col-s-11 {
+            width: 91.66%;
+        }
+
+        .col-s-12 {
+            width: 100%;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) {
+        /* For desktop: */
+        .col-1 {
+            width: 8.33%;
+        }
+
+        .col-2 {
+            width: 16.66%;
+        }
+
+        .col-3 {
+            width: 25%;
+        }
+
+        .col-4 {
+            width: 33.33%;
+        }
+
+        .col-5 {
+            width: 41.66%;
+        }
+
+        .col-6 {
+            width: 50%;
+        }
+
+        .col-7 {
+            width: 58.33%;
+        }
+
+        .col-8 {
+            width: 66.66%;
+        }
+
+        .col-9 {
+            width: 75%;
+        }
+
+        .col-10 {
+            width: 83.33%;
+        }
+
+        .col-11 {
+            width: 91.66%;
+        }
+
+        .col-12 {
+            width: 100%;
+        }
+    }
+</style>
+<div class="row title_right">
+    <div class="col">
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="nc-icon nc-chart-bar-32" style="width:30px !important"></i></div>
+            </div>
+            <input type="text" id="tableauURL" class="form-control" placeholder="Enter the url for your dashboard...">
         </div>
     </div>
+    <div class="col">
+        <button class="btn btn-outline-primary btn-round" style="margin: 0px 0px !important" id="btnSubmit" type="submit">
+            <i class="fa fa-search"></i>
+        </button>
+    </div>
 </div>
-
-<div id="markDetails">@*Information about selected marks displays here.*@</div>
-
-<div class="col-md-8" style="text-align: center;background-color:#F7F7F7; padding-top: 10px;">
-    <div id="tabs">
-        <ul style="display:none">
-            <li><a href="#tabs-1">Visualization</a></li>
-            <li><a href="#tabs-2">Data</a></li>
-        </ul>
-        <div id="tabs-1">
-            <div id="vizContainer"></div>
-        </div>
-        <div id="tabs-2"  style="display:none">
-            Worksheet Name :
-            <select id="menu"></select>
-            <div id="dataContainer">
+@*<div id="markDetails">Information about selected marks displays here.</div>*@
+<div class="row">
+    <div class="col-9" style="text-align: center;background-color:#F7F7F7; padding-top: 10px;">
+           <h4 id="dashboardTitle" class="info-title"></h4>
+        <div id="tabs">
+            <ul style="display:none">
+                <li><a href="#tabs-1">Visualization</a></li>
+                <li><a href="#tabs-2">Data</a></li>
+            </ul>
+            <div id="tabs-1">
+                <div id="vizContainer"></div>
+            </div>
+            <div id="tabs-2" style="display:none">
+                Worksheet Name :
+                <select id="menu"></select>
+                <div id="dataContainer">
+                </div>
             </div>
         </div>
-    </div>
-    
-    <div id="textarea"></div>
-</div>
-<div class="col-md-4">
-    <!-- <h4 class="" id="dashboardTitle"></h4> -->
-    <div class="btn btn-default btn-block" style="cursor:none;display:none" id="dashboardTitle"></div>
-    <p><i>Say "Filter By" any of the below column name</i></p>
-    <p><i>Choose value by saying "Value" and any of the value of the filter from the dashboard.</i></p>
-    <div class="container mt-3">
-        <ul class="list-inline" id="dashboardCols"></ul>
-    </div>
-       <div class="container mt-3">
-        <ul class="list-inline" id="filterOptions"></ul>
-    </div>
-    <br>
-    <p><i>Example: Filter by Region</i></p>
-    <p><i>Value Asia</i></p>
-    <br>
-     
-</div>
 
+        <div id="textarea"></div>
+    </div>
+    <div class="col-3">
+        <!-- <h4 class="" id="dashboardTitle"></h4> -->
+        @*<div class="col-12 btn btn-default btn-block" style="cursor:none;display:none" id="dashboardTitle"></div>*@
+
+        <div class="container mt-3" style="display:none">
+                <ul class="list-inline" id="dashboardCols"></ul>
+            </div>
+        @*<div class="container mt-3">
+                <ul class="list-inline" id="filterOptions"></ul>
+            </div>*@
+        <div class="info info-horizontal">
+            @*<div class="icon icon-rose">
+                <i class="nc-icon nc-tablet-2"></i>
+            </div>*@
+            <div class="description">
+                @*<h4 id="dashboardTitle" class="info-title"></h4>*@
+                <p><i>Say "Filter By" any of the below column name</i></p>
+                <p><i>Choose value by saying "Value" and any of the value of the filter from the dashboard.</i></p>
+
+                <p><i>Example: Filter by Region</i></p>
+                <p><i>Value Asia</i></p>
+                <br>
+                <div id="filterHeading"></div>
+                <div class="card" style="width: 20rem;">
+                    <ul id="filterOptions" class="list-group list-group-flush"></ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
 
 
 @*Scripts*@

@@ -5,45 +5,54 @@
 }
 
 <h2>History</h2>
+<div class="table-responsive">
+    <table class="table">
+        <thead class=" text-primary">
+            <tr>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.Username)
+                    </th>*@
+                <th>
+                    @Html.DisplayNameFor(model => model.DashboardName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Url)
+                </th>
 
-<table class="table table-striped table-bordered">
-    <tr>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>*@
-         <th>
-            @Html.DisplayNameFor(model => model.DashboardName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Url)
-        </th>
-       
-        <th>
-            @Html.DisplayNameFor(model => model.OpenedOn)
-        </th>
-        <th></th>
-    </tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.OpenedOn)
+                </th>
+                <th>
 
-@foreach (var item in Model) {
-    <tr>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>*@
-         <td>
-            @Html.DisplayFor(modelItem => item.DashboardName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Url)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.OpenedOn)
-        </td>
-        <td>
-            @Html.ActionLink("View", "ViewDashboard", new { id=item.Id })
-         
-        </td>
-    </tr>
-}
+                </th>
 
-</table>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.Username)
+                        </td>*@
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DashboardName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Url)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OpenedOn)
+                    </td>
+                    <td>
+                        @Html.ActionLink("View", "ViewDashboard", new { id = item.Id })
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</div>

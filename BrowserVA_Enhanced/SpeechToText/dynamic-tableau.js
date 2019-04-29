@@ -64,9 +64,46 @@ function showActiveSheet() {
     }
 }
 
+function convertColumnsObject(sheetDataObj) {
+    var col_obj = sheetDataObj.getColumns();
+    var col_array = new Array();
+    var col_type = new Array();
+    for (var k = 0; k < col_obj.length; k++) {
+        col_array[k] = col_obj[k].getFieldName();
+        // col_type[k] = col_obj[k].getDataType();
+    }
+    //console.log(col_array);
+    return col_array;
+}
+
+
 function selectColumn(column, ColType) {
-    var _colType = (sentenceCase(ColType));
-   // alert(column, ColType);
+    getFilters();
+    var colArr = [];
+    var _colType;
+    for (var i = 0; i < worksheetArray.length; i++) {
+        sheet = worksheetArray[i];
+
+
+        if (sheet.getSheetType() === 'worksheet' && sheet.getName() === $("#menu").val()) {
+            var sheetName = sheet.getName();
+            // console.log(sheetName);
+            sheet.getUnderlyingDataAsync(options).then(function (t) {
+                colArr = convertColumnsObjectToArrayOfNames(t);
+            });
+        }
+
+    }
+    for (var j = 0; j < colArr.length; j++) {
+        if (_.contains(ColType, colArr[j])) {
+            _colType = colArr[j];
+        }
+        alert(_colType);
+        alert(colArr[j]);
+
+    }
+    _colType = (sentenceCase(ColType));
+    // alert(column, ColType);
     workbook.getActiveSheet().getWorksheets()[0].selectMarksAsync(_colType, column, tableau.SelectionUpdateType.REPLACE);
     workbook.getActiveSheet().getWorksheets()[1].selectMarksAsync(_colType, column, tableau.SelectionUpdateType.REPLACE);
     workbook.getActiveSheet().getWorksheets()[2].selectMarksAsync(_colType, column, tableau.SelectionUpdateType.REPLACE);
@@ -75,33 +112,54 @@ function selectColumn(column, ColType) {
 
 
 function filterByColumn(ColType, column) {
-    var _colType = (sentenceCase(ColType));
-    var _column = (sentenceCase(column));
-  //  alert(_colType);
-  //  alert(_column);
+    getFilters();
+    var _colType = (sentenceCase(ColType.replace(/[_\s]/g, '')));
+    var _column = (sentenceCase(column.replace(/[_\s]/g, '')));
+
     var colNames = [];
     colNames = localStorage.getItem("Fields");
     var str_array = colNames.split(',');
     for (let index = 0; index < str_array.length; index++) {
-        if (str_array[index].toLowerCase() === _colType.toLowerCase()) {
+        var d = str_array[index].replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '').toLowerCase();
+        if (d === _colType.toLowerCase()) {
             _colType = str_array[index];
             break;
+        }
+        else if (_.contains(" ", _colType)) {
+            if (d.contains(_colType.toLowerCase)) {
+                _colType = str_array[index];
+                break;
+            }
         }
     }
 
     var colData = [];
     colData = localStorage.getItem("FieldData");
-    var data_array = colData.split(',');
+
+    var data_array = colData.split('"},');
+    data_array = JSON.parse(data_array);
     for (let index = 0; index < data_array.length; index++) {
-        if (data_array[index].toLowerCase() === column.toLowerCase()) {
-            column = data_array[index];
-            break;
-        }
+       // for (var innerValue = 0; innerValue < length; innerValue++) {
+
+       // console.log(data_array);
+            var sd = data_array[index].replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '').toLowerCase();
+
+            if (sd === column.toLowerCase()) {
+                _column = data_array[index];
+                break;
+            }
+            else if (_.contains(" ", _column)) {
+                if (sd.contains(_column.toLowerCase)) {
+                    _column = data_array[index];
+                    break;
+                }
+            }
+        //}
     }
-    // workbook.getActiveSheet().getWorksheets()[0].applyFilterAsync("CONTAINS("+ColType+")", "CONTAINS("+column+")", tableau.FilterUpdateType.REPLACE);
-    // workbook.getActiveSheet().getWorksheets()[1].applyFilterAsync("CONTAINS("+ColType+")", "CONTAINS("+column+")", tableau.FilterUpdateType.REPLACE);
-    // workbook.getActiveSheet().getWorksheets()[2].applyFilterAsync("CONTAINS("+ColType+")", "CONTAINS("+column+")", tableau.FilterUpdateType.REPLACE);
-    // workbook.getActiveSheet().getWorksheets()[3].applyFilterAsync("CONTAINS("+ColType+")", "CONTAINS("+column+")", tableau.FilterUpdateType.REPLACE);
+    //workbook.getActiveSheet().getWorksheets()[0].applyFilterAsync("CONTAINS(" + _colType + ")", "CONTAINS(" + column + ")", tableau.FilterUpdateType.REPLACE);
+    //workbook.getActiveSheet().getWorksheets()[1].applyFilterAsync("CONTAINS(" + _colType + ")", "CONTAINS(" + column + ")", tableau.FilterUpdateType.REPLACE);
+    //workbook.getActiveSheet().getWorksheets()[2].applyFilterAsync("CONTAINS(" + _colType + ")", "CONTAINS(" + column + ")", tableau.FilterUpdateType.REPLACE);
+    //workbook.getActiveSheet().getWorksheets()[3].applyFilterAsync("CONTAINS(" + _colType + ")", "CONTAINS(" + column + ")", tableau.FilterUpdateType.REPLACE);
 
     workbook.getActiveSheet().getWorksheets()[0].applyFilterAsync(_colType, _column, tableau.FilterUpdateType.REPLACE);
     workbook.getActiveSheet().getWorksheets()[1].applyFilterAsync(_colType, _column, tableau.FilterUpdateType.REPLACE);
@@ -118,6 +176,18 @@ function startover() {
 
 function onMarksSelection(marksEvent) {
     return marksEvent.getMarksAsync().then(reportSelectedMarks);
+}
+
+function getFilters() {
+    var liList = $('#filterOptions li');
+    var f_arr = [];
+    $(liList).each(function () {
+
+        var text = $(this).text();
+        f_arr.push(text);
+    });
+    localStorage.setItem("Fields", f_arr);
+    console.log(f_arr);
 }
 
 //function reportSelectedMarks(marks) {
@@ -150,14 +220,14 @@ function reportSelectedMarks(marks) {
             html += "<li><b>Field Name:</b> " + pair.fieldName;
             html += "<br/><b>Value:</b> " + pair.formattedValue + "</li>";
 
-           // var result = pair.fieldName.match("");
+            // var result = pair.fieldName.match("");
             if (pair.fieldName.match("SUM*")) {
 
                 var _name = pair.fieldName.replace("SUM", "");
                 responsiveVoice.speak("The sum of " + _name + " is " + pair.formattedValue);
 
             }
-            else if (pair.fieldName.match("AVG*")){
+            else if (pair.fieldName.match("AVG*")) {
 
                 var _data = pair.fieldName.replace("AVG", "");
                 var val = pair.formattedValue.replace("AVG", "");
